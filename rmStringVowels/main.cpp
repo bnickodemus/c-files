@@ -1,6 +1,3 @@
-
-
-//
 //  main.cpp
 //  Test
 //
@@ -8,7 +5,7 @@
 //  Copyright (c) 2015 Broc Nickodemus. All rights reserved.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 using namespace std;
 
