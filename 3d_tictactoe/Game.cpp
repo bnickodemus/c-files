@@ -11,12 +11,12 @@ int main()
 	Board * gameBoard = new Board();
 	gameBoard->printBoard();
 
-	while (gameBoard->m_size < 65) {
+	while (gameBoard->m_size < 65 && gameBoard->m_pWon == false) {
 		
 	gameBoard->getInput();
 	gameBoard->placeInput(gameBoard->m_str);
 	gameBoard->printBoard();
-	
+	gameBoard->checkWin();
 	}
 
 	return 0;

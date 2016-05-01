@@ -12,7 +12,8 @@ class Board
 	string m_str;
 	int m_player;
 	int m_size;
-	int m_lastPlayed[];
+	int m_lastPlayed [4];
+	bool m_pWon;
 
 	Board();
 	~Board();
