@@ -56,7 +56,7 @@ void Board::getInput()
 				cout << "you did not enter a number correctly please try again" << endl;
 				cin.clear();
 				cin.ignore(256,'\n');
-				break;
+				//break;
 			}
 			else {	
 				valid = true;
@@ -106,7 +106,7 @@ void Board::checkWin()
 	char ch;
 	if (m_player == 1)
 		ch = 'X';
-	else 
+	if (m_player == 2)
 		ch = 'O';
 	int counter = 0;
 	int x,y,z;
@@ -115,13 +115,15 @@ void Board::checkWin()
 	y = m_lastPlayed[1];
 	z = m_lastPlayed[2];
 	
+	int a,b,c = 0;
+
 	//check 2d row
 	for (int j = 0; j < 4; j++) {
 		if (m_arry[x][j][z] == ch)
 			counter++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 2d row" << endl;
 		m_pWon = true;
 	}
 	counter = 0; // reset the counter to win variable
@@ -132,7 +134,7 @@ void Board::checkWin()
 			counter++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 2d column" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
@@ -143,20 +145,22 @@ void Board::checkWin()
 			counter++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 2d diagonal top to bottom" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//check 2d diagonal from bottom to top (if j + k == 3)
-	for (int j = 4; j > 0; j--) {
-		for (int k = 0; k < 4; k++) {
-			if (m_arry[x][j][k] == ch)
-				counter++;
-		}
+	b = 3;
+	c = 0;
+	for (int i = 0; i < 4; i++) {
+		if (m_arry[x][b][c] == ch) 
+			counter++;
+		b--;
+		c++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 2d diagonal from bottom to top" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
@@ -167,7 +171,7 @@ void Board::checkWin()
 			counter++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 3d back" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
@@ -179,82 +183,93 @@ void Board::checkWin()
 		}
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 3d diagonal from top left" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//3d diagonal from bottom left
+	a = 0;
+	b = 3;
+	c = 0;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 4; j > 0; j--) {
-			for (int k = 0; k < 4; k++) {
-				if (m_arry[i][j][k] == ch) 
-					counter++;
-			}
-		}
+		if (m_arry[a][b][c] == ch)
+			counter++;
+		a++;
+		b--;
+		c++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won by 3d diagonal from bottom left" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//3d diagonal from bottom right
+	a = 0;
+	b = 3;
+	c = 3;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 4; j > 0; j--) {
-			for (int k = 4; k > 0; k--) {
-				if (m_arry[i][j][k] == ch)
-					counter++;
-			}
-		}
+		if (m_arry[a][b][c] == ch)
+			counter++;
+		a++;
+		b--;
+		c--;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won from 3d diagonal from bottom right" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//3d diagonal from top right
+	a = 0;
+	b = 0;
+	c = 3;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			for (int k = 4; k > 0; k--) {
-				if (m_arry[i][j][k] == ch)
-					counter++;
-			}
-		}
+		if (m_arry[a][b][c] == ch)
+			counter++;
+		a++;
+		b++;
+		c--;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won from 3d diagonal from top right" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//3d diagonal horez
+	a = 0;
+	b = 0;
+	c = 0;
 	for (int i = 0; i < 4; i++) {
-		for (int k = 0; k < 4; k++) {
-			if (m_arry[i][y][k] == ch) 
-				counter++;
-		}
+		if (m_arry[a][y][c] == ch)
+			counter++;
+		a++;
+		c++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won from 3d diagonal horez" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
 	
 	//3d diagonal vert
+	a = 0;
+	b = 0;
+	c = 0;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			if (m_arry[i][j][z] == ch) 
-				counter++;
-		}
+		if (m_arry[a][b][z] == ch)
+			counter++;
+		a++;
+		b++;
 	}
 	if (counter == 4) {
-		cout << "Player" << m_player << " has won" << endl;
+		cout << "Player" << m_player << " has won 3d diagonal vert" << endl;
 		m_pWon = true;
 	}
 	counter = 0;
-
 
 	//switch player
 	if (m_player == 1) 
