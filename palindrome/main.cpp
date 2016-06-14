@@ -49,7 +49,7 @@ void ParseString(string str) {
             buffer.erase(0, buffer.length());
         }
     }
-    
+
     string pass;
     char c;
     string good;
