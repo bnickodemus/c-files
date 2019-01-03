@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../../std_lib_facilities.h"
+using namespace std;
 
 const int gas = 10;
 int ga[gas] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 };
